@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:toko_apps/data/model/customer_tth.dart';
-import 'package:toko_apps/data/model/request/GetCustomerTTHByIdRequest.dart';
+import 'package:toko_apps/data/model/object/customer_tth.dart';
+import 'package:toko_apps/data/model/request/get_customertth_by id _request.dart';
 import 'package:toko_apps/data/repositories/remote_repositories.dart';
-import 'package:toko_apps/presentation/bloc/customer/customer_bloc.dart';
 
 part 'customer_tth_event.dart';
 part 'customer_tth_state.dart';

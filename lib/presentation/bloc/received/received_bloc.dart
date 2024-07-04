@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:toko_apps/data/model/customer_tth.dart';
+import 'package:toko_apps/data/model/object/customer_tth.dart';
 import 'package:toko_apps/data/model/request/update_no_customertth_request.dart';
 import 'package:toko_apps/data/model/request/update_yes_customertth_request.dart';
 import 'package:toko_apps/data/repositories/remote_repositories.dart';

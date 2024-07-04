@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:toko_apps/data/model/customer_tth.dart';
+import 'package:toko_apps/data/model/object/customer_tth.dart';
 
 GetCustomerTTHResponse formatResponseFromJson(String str) => GetCustomerTTHResponse.fromJson(json.decode(str));
 

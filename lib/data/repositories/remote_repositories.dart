@@ -4,13 +4,11 @@ import 'package:dartz/dartz.dart';
 import 'package:toko_apps/core/handling/exception.dart';
 import 'package:toko_apps/core/handling/failure.dart';
 import 'package:toko_apps/data/datasource/remote_datasource.dart';
-import 'package:toko_apps/data/model/customer.dart';
-import 'package:toko_apps/data/model/customer_tth.dart';
-import 'package:toko_apps/data/model/request/GetCustomerTTHByIdRequest.dart';
+import 'package:toko_apps/data/model/object/customer.dart';
+import 'package:toko_apps/data/model/object/customer_tth.dart';
+import 'package:toko_apps/data/model/request/get_customertth_by id _request.dart';
 import 'package:toko_apps/data/model/request/update_no_customertth_request.dart';
 import 'package:toko_apps/data/model/request/update_yes_customertth_request.dart';
-import 'package:toko_apps/data/model/response/format_response.dart';
-import 'package:toko_apps/data/model/response/get_customer_tth.dart';
 
 class RemoteRepositories {
   final RemoteDataSource remoteDatasource;

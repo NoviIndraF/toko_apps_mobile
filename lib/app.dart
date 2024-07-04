@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toko_apps/core/route/route.dart';
 import 'package:toko_apps/core/styles/colors.dart';
 import 'package:toko_apps/core/utils/utils.dart';
-import 'package:toko_apps/data/model/customer.dart';
+import 'package:toko_apps/data/model/object/customer.dart';
 import 'package:toko_apps/presentation/bloc/customer/customer_bloc.dart';
 import 'package:toko_apps/presentation/bloc/customer_tth/customer_tth_bloc.dart';
 import 'package:toko_apps/presentation/bloc/received/received_bloc.dart';

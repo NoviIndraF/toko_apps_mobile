@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:toko_apps/core/constant/constant.dart';
-import 'package:toko_apps/data/model/request/GetCustomerTTHByIdRequest.dart';
+import 'package:toko_apps/data/model/request/get_customertth_by id _request.dart';
 import 'package:toko_apps/data/model/request/update_no_customertth_request.dart';
 import 'package:toko_apps/data/model/request/update_yes_customertth_request.dart';
 import 'package:toko_apps/data/model/response/format_response.dart';

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:toko_apps/data/model/customer.dart';
+import 'package:toko_apps/data/model/object/customer.dart';
 import 'package:toko_apps/data/model/response/format_response.dart';
 import 'package:toko_apps/data/repositories/remote_repositories.dart';
 
@@ -18,6 +18,18 @@ class CustomerBloc extends Bloc<CustomerEvent, CustomerState> {
           emit(GetCustomerState(data: data));
         } else {
           emit(GetCustomerEmpty());
+        }
+      });
+    });
+
+    on<GetCustomerInitEvent>((event, emit) async {
+      emit(GetCustomerInitLoading());
+      final result = await repositories.getCustomers();
+      result.fold((failure) => emit(GetCustomerInitError(message: failure.message)), (data) {
+        if(data!.isNotEmpty){
+          emit(GetCustomerInitState(data: data));
+        } else {
+          emit(GetCustomerInitEmpty());
         }
       });
     });

@@ -4,17 +4,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toko_apps/core/styles/colors.dart';
 import 'package:toko_apps/core/styles/dimens.dart';
-import 'package:toko_apps/data/model/customer.dart';
-import 'package:toko_apps/data/model/customer_tth.dart';
-import 'package:toko_apps/data/model/request/GetCustomerTTHByIdRequest.dart';
-import 'package:toko_apps/data/model/response/get_customer_tth.dart';
+import 'package:toko_apps/data/model/object/customer.dart';
+import 'package:toko_apps/data/model/object/customer_tth.dart';
+import 'package:toko_apps/data/model/request/get_customertth_by id _request.dart';
 import 'package:toko_apps/presentation/bloc/customer/customer_bloc.dart';
 import 'package:toko_apps/presentation/bloc/customer_tth/customer_tth_bloc.dart';
 import 'package:toko_apps/presentation/bloc/select_customer/select_customer_bloc.dart';
 import 'package:toko_apps/presentation/widget/dialog_konfirmasi.dart';
 import 'package:toko_apps/presentation/widget/dialog_total_hadiah.dart';
 import 'package:toko_apps/presentation/widget/item_hadiah.dart';
-import 'package:toko_apps/presentation/widget/item_pop_up_total_hadiah.dart';
 
 List<CustomerTTH> listCustomThh = [];
 
@@ -34,39 +32,56 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: RefreshIndicator(
-          backgroundColor: whiteColor,
-          color: accentColor,
-          onRefresh: () {
-            return Future.microtask(() {});
-          },
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    height: Dimens.heighMax(context) * 0.3,
-                    color: primaryColor,
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: bgDark,
-                    ),
-                  )
-                ],
-              ),
-              SingleChildScrollView(
-                child: Column(
+    context.read<CustomerBloc>().add(GetCustomerEvent());
+    return BlocListener<CustomerBloc, CustomerState>(
+      listener: (context, state) {
+        if(state is GetCustomerState){
+          var customerFirst = state.data.first;
+          Future.microtask(() {
+            context
+                .read<SelectCustomerBloc>()
+                .add(SelectCustomersEvent(customer: customerFirst));
+            GetCustomerTTHByIdRequest request = GetCustomerTTHByIdRequest(custid: customerFirst.custId??"");
+            context.read<CustomerTthBloc>().add(GetCustomerTTHEvent(request: request));
+          });
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: RefreshIndicator(
+            backgroundColor: whiteColor,
+            color: accentColor,
+            onRefresh: () {
+              return Future.microtask(() {
+                context.read<CustomerBloc>().add(GetCustomerEvent());
+              });
+            },
+            child: Stack(
+              children: [
+                Column(
                   children: [
-                    TopContent(context),
-                    MiddleContent(context, defCustomer),
-                    MainContent(context),
+                    Container(
+                      height: Dimens.heighMax(context) * 0.3,
+                      color: primaryColor,
+                    ),
+                    Expanded(
+                      child: Container(
+                        color: bgDark,
+                      ),
+                    )
                   ],
                 ),
-              )
-            ],
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TopContent(context),
+                      MiddleContent(context, defCustomer),
+                      MainContent(context),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -261,18 +276,18 @@ class MiddleContent extends StatelessWidget {
                   children: [
                     BlocBuilder<CustomerTthBloc, CustomerTthState>(
                       builder: (context, state) {
-                        if(state is GetCustomerTTHState){
+                        if (state is GetCustomerTTHState) {
                           return GestureDetector(
                             onTap: () {
-                              if(state.data.first.received != 1){
+                              if (state.data.first.received != 1) {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
                                     return DialogKonfirmasi(selectedCustomer);
                                   },
                                 );
-                              } else{
-                                 Container();
+                              } else {
+                                Container();
                               }
                             },
                             child: Container(
@@ -281,7 +296,7 @@ class MiddleContent extends StatelessWidget {
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold))),
                           );
-                        }else if (state is GetCustomerTTHEmpty) {
+                        } else if (state is GetCustomerTTHEmpty) {
                           return Center(
                             child: Text("IsEmpty"),
                           );

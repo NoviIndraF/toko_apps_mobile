@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:toko_apps/data/model/customer.dart';
+import 'package:toko_apps/data/model/object/customer.dart';
 
 part 'select_customer_event.dart';
 part 'select_customer_state.dart';

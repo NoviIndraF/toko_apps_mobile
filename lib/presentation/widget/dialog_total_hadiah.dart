@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toko_apps/core/styles/colors.dart';
 import 'package:toko_apps/core/styles/dimens.dart';
-import 'package:toko_apps/data/model/customer_tth.dart';
+import 'package:toko_apps/data/model/object/customer_tth.dart';
 
 import 'item_pop_up_total_hadiah.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../customer.dart';
+import '../object/customer.dart';
 
 GetCustomerResponse formatResponseFromJson(String str) => GetCustomerResponse.fromJson(json.decode(str));
 

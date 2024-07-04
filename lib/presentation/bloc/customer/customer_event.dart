@@ -5,3 +5,6 @@ sealed class CustomerEvent {}
 
 class GetCustomerEvent extends CustomerEvent{
 }
+
+class GetCustomerInitEvent extends CustomerEvent{
+}
